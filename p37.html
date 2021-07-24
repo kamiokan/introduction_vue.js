@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<title>初めてのVue.js</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+<div id="app">
+  <p>{{name}}</p>
+  <button v-on:click="greet">挨拶する</button>
+</div>
+
+<script>
+  // ロードされ、Vueがグローバル変数として定義されているか確認
+  console.assert(typeof Vue !== "undefined");
+  let vm = new Vue({
+    el: "#app",
+    data: { name: "上岡" },
+    methods: {
+      greet: function () {
+        alert("Hello," + this.name);
+      },
+    },
+  });
+</script>
