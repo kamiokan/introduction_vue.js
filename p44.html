@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<title>初めてのVue.js</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+<button id="buy-button" v-bind:title="loggedInButton">購入</button>
+
+<script>
+  let vm = new Vue({
+    el: "#buy-button",
+    data: {
+      loggedInButton: "ログイン済みのため購入できます。",
+    },
+  });
+</script>
+
+<button id="buy-button2" v-bind:disabled="!canBuy">購入</button>
+
+<script>
+  let vm2 = new Vue({
+    el: "#buy-button2",
+    data: {
+      canBuy: false,
+    },
+  });
+</script>
