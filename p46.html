@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<title>初めてのVue.js</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+<div id="app">
+  <p>{{items[0].name}}: {{items[0].price}}円 x {{items[0].quantity}}本</p>
+  <p>フィルタ処理例{{1000 | numberWithDelimiter}}</p>
+</div>
+
+<script>
+  const items = [
+    {
+      name: "鉛筆",
+      price: 300,
+      quantity: 0,
+    },
+    {
+      name: "ノート",
+      price: 400,
+      quantity: 0,
+    },
+    {
+      name: "消しゴム",
+      price: 500,
+      quantity: 0,
+    },
+  ];
+
+  let vm = new Vue({
+    el: "#app",
+    data: {
+      items: items,
+    },
+    filters: {
+      numberWithDelimiter: function (value) {
+        if (!value) {
+          return "0";
+        }
+        return value.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+      },
+    },
+  });
+
+  vm.$watch(
+    function () {
+      // 鉛筆の個数
+      return this.items[0].quantity;
+    },
+    function (quantity) {
+      // このコールバックは、鉛筆の購入個数が変更されたら呼ばれます
+      console.log(quantity);
+    }
+  );
+</script>
